@@ -46,16 +46,84 @@
         footer:{ consult:"Request Consultation", catalog:"Get Catalog", sample:"Request Sample" } }
     };
 
-    // --- KR categories (unchanged) ---
-    const CATEGORIES_KO = [/* ... same as before ... */];
+    // ---- Korean categories (FILLED) ----
+    const CATEGORIES_KO = [
+      { key:"term", title:"전문용어", desc:"산업별 용어·약어·표준 표현 정리, 번역 일관성에 최적화",
+        specs:[
+          "언어쌍: 영↔한, 영↔중, 영↔일, 영↔대만",
+          "규모: 영한 60여개 분야 300만쌍, 영중 70여개 분야 350만쌍, 영일 50여개 분야 270만쌍, 영대만 50여개 분야 350만쌍",
+          "포맷: CSV, XLSX, TEXT",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "대표 도메인: 전자, 전기, 항공우주, 물리, 화학, 조선, 건축, 법률, 금융 등"
+        ]},
+      { key:"mono", title:"도메인 특화 모노코퍼스", desc:"한 언어 내 대규모 도메인 텍스트 (스타일/품질 필터 적용)",
+        specs:[
+          "언어: 한국어, 영어, 일본어 등",
+          "규모: 1도메인당 최소 1천만~최대 1억 문장 (도메인별 문의 요망)",
+          "포맷: TXT, JSONL",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "도메인: 경제(금융, 부동산·건설), 과학(광업, 교통·운송, 농축어업, 생명과학, 석유화학, 소프트웨어, 수자원·해양, 수학, 안전, 의학, 인공지능, 연구·일반, 자동차, 전력·에너지, 정보·보안, 제조, 컴퓨터, 통신, 항공우주), 사회(뉴스·미디어, 법률, 시사·행정, 정치), 엔터(게임, 관광, 스포츠, 영화·엔터)",
+          "용도: 언어 모델 프리트레이닝, 도메인 어댑테이션"
+        ]},
+      { key:"para-domain", title:"도메인 특화 병렬코퍼스", desc:"산업별 평행문장 페어, MT 튜닝·QE 용",
+        specs:[
+          "언어쌍: 출발어 영어·한국어, 타겟어 중국어, 일본어, 러시아어, 독일어, 프랑스어, 스페인어, 이태리어, 베트남어, 인도네시아어, 태국어",
+          "규모: 언어쌍·도메인당 500만~1000만쌍",
+          "포맷: CSV, XLSX, TEXT",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "대표 도메인: 전자, 전기, 항공우주, 물리, 화학, 조선, 건축, 법률, 금융 등"
+        ]},
+      { key:"para-colloquial", title:"구어체 병렬코퍼스", desc:"일상 대화·자연스러운 구어체 병렬 데이터",
+        specs:[
+          "도메인: 구어체",
+          "규모: 500만~1000만쌍",
+          "포맷: CSV, XLSX, TEXT",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공"
+        ]},
+      { key:"multi-dialogue", title:"멀티턴 대화셋", desc:"다수 발화자가 참여하는 연속 대화 데이터",
+        specs:[
+          "언어: 한국어, 중국어",
+          "규모: 각 2000만 문장 (약 200만 대화셋)",
+          "포맷: CSV, XLSX, TEXT",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "용도: 대화형 LLM 학습"
+        ]},
+      { key:"multi-qa", title:"멀티턴 QA셋", desc:"분야별 심층 질의응답 세트",
+        specs:[
+          "언어: 한국어, 중국어",
+          "분야: 의학, 과학기술",
+          "규모: 의학 약 3000만 문장, 과학기술 약 1억 문장 (약 800만 대화셋)",
+          "포맷: CSV, XLSX, TEXT",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "용도: QA 모델 학습, 평가"
+        ]},
+      { key:"multimodal", title:"멀티모달 (이미지·텍스트)", desc:"이미지와 설명 텍스트 페어 데이터",
+        specs:[
+          "언어: 한국어, 중국어",
+          "규모: 약 1000만쌍 (이미지·텍스트는 약 200자 이상)",
+          "포맷: JSON, Parquet",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "용도: 이미지 캡션, 멀티모달 LLM 학습"
+        ]}
+    ];
 
-    // --- EN categories (fully translated) ---
+    // ---- English categories (kept in English) ----
     const CATEGORIES_EN = [
-      {
-        key: "term",
-        title: "Terminology",
-        desc: "Standardized terminology and abbreviations by industry; optimized for translation consistency",
-        specs: [
+      { key:"term", title:"Terminology", desc:"Standardized terminology and abbreviations by industry; optimized for translation consistency",
+        specs:[
           "Language Pairs: EN↔KO, EN↔ZH, EN↔JA, EN↔TW",
           "Scale: EN–KO: 3M pairs (60+ fields), EN–ZH: 3.5M pairs (70+ fields), EN–JA: 2.7M pairs (50+ fields), EN–TW: 3.5M pairs (50+ fields)",
           "Format: CSV, XLSX, TEXT",
@@ -63,13 +131,9 @@
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email",
           "Main Domains: Electronics, Electrical, Aerospace, Physics, Chemistry, Shipbuilding, Architecture, Law, Finance, etc."
-        ]
-      },
-      {
-        key: "mono",
-        title: "Domain Mono‑corpus",
-        desc: "Large-scale single-language domain text (style/quality filtered)",
-        specs: [
+        ]},
+      { key:"mono", title:"Domain Mono‑corpus", desc:"Large-scale single-language domain text (style/quality filtered)",
+        specs:[
           "Language: Korean, English, Japanese, etc.",
           "Scale: Min. 10M – Max. 100M sentences per domain (inquire per domain)",
           "Format: TXT, JSONL",
@@ -77,13 +141,9 @@
           "Sample: Small sample via email",
           "Domains: Economics (Finance, Real Estate & Construction), Science (Mining, Transportation, Agriculture, Life Sciences, Petrochemicals, Software, Water & Marine, Mathematics, Safety, Medicine, AI, Research & General, Automotive, Power & Energy, Information & Security, Manufacturing, Computing, Telecommunications, Aerospace), Society (News & Media, Law, Current Affairs & Administration, Politics), Entertainment (Games, Tourism, Sports, Film & Entertainment)",
           "Usage: Language model pretraining, domain adaptation"
-        ]
-      },
-      {
-        key: "para-domain",
-        title: "Domain Parallel Corpus",
-        desc: "Industry-specific parallel sentence pairs for MT tuning and QE",
-        specs: [
+        ]},
+      { key:"para-domain", title:"Domain Parallel Corpus", desc:"Industry-specific parallel sentence pairs for MT tuning and QE",
+        specs:[
           "Language Pairs: Source: English, Korean; Target: Chinese, Japanese, Russian, German, French, Spanish, Italian, Vietnamese, Indonesian, Thai",
           "Scale: 5M–10M pairs per language pair and domain",
           "Format: CSV, XLSX, TEXT",
@@ -91,26 +151,18 @@
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email",
           "Main Domains: Electronics, Electrical, Aerospace, Physics, Chemistry, Shipbuilding, Architecture, Law, Finance, etc."
-        ]
-      },
-      {
-        key: "para-colloquial",
-        title: "Colloquial Parallel Corpus",
-        desc: "Natural conversational parallel data",
-        specs: [
+        ]},
+      { key:"para-colloquial", title:"Colloquial Parallel Corpus", desc:"Natural conversational parallel data",
+        specs:[
           "Domain: Colloquial",
           "Scale: 5M–10M pairs",
           "Format: CSV, XLSX, TEXT",
           "Update Cycle: On demand",
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email"
-        ]
-      },
-      {
-        key: "multi-dialogue",
-        title: "Multi‑turn Dialogues",
-        desc: "Consecutive dialogues involving multiple speakers",
-        specs: [
+        ]},
+      { key:"multi-dialogue", title:"Multi‑turn Dialogues", desc:"Consecutive dialogues involving multiple speakers",
+        specs:[
           "Language: Korean, Chinese",
           "Scale: 20M sentences each (about 2M dialogue sets)",
           "Format: CSV, XLSX, TEXT",
@@ -118,13 +170,9 @@
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email",
           "Usage: Conversational LLM training"
-        ]
-      },
-      {
-        key: "multi-qa",
-        title: "Multi‑turn QA",
-        desc: "Deep domain‑specific question–answer sets",
-        specs: [
+        ]},
+      { key:"multi-qa", title:"Multi‑turn QA", desc:"Deep domain‑specific question–answer sets",
+        specs:[
           "Language: Korean, Chinese",
           "Fields: Medicine, Science & Technology",
           "Scale: Medicine ~30M sentences, Sci/Tech ~100M sentences (about 8M QA turns)",
@@ -133,13 +181,9 @@
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email",
           "Usage: QA model training and evaluation"
-        ]
-      },
-      {
-        key: "multimodal",
-        title: "Multimodal (Image·Text)",
-        desc: "Image–text paired datasets",
-        specs: [
+        ]},
+      { key:"multimodal", title:"Multimodal (Image·Text)", desc:"Image–text paired datasets",
+        specs:[
           "Language: Korean, Chinese",
           "Scale: ~10M pairs (image & text, text ≥200 characters)",
           "Format: JSON, Parquet",
@@ -147,8 +191,7 @@
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email",
           "Usage: Image captioning, multimodal LLM training"
-        ]
-      }
+        ]}
     ];
 
     const EMAIL = "dugi6508@daum.net";
@@ -217,7 +260,7 @@
             <p className="mt-2 text-sky-700 text-base font-medium">{L.hero.promo}</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="#contact" className="w-full sm:w-auto text-center px-4 py-2 rounded-xl bg-sky-600 text-white font-medium">{L.hero.ctas.consult}</a>
-              <a href={CATALOG_URL} download className="w-full sm:w-auto text-center px-4 py-2 rounded-xl border font-medium" target="_blank" rel="noopener noreferrer">{L.hero.ctas.catalog}</a>
+              <a href={"catalog/TransVille_LData_ver2.pdf"} download className="w-full sm:w-auto text-center px-4 py-2 rounded-xl border font-medium" target="_blank" rel="noopener noreferrer">{L.hero.ctas.catalog}</a>
             </div>
           </div>
           <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200 origin-center mx-auto">
@@ -280,7 +323,7 @@
           </div>
           <div className="px-6 pb-6 flex items-center gap-2 justify-end border-t">
             <a href={buildMailto('consult', L, { category: data.title })} className="px-4 py-2 rounded-xl bg-sky-600 text-white text-sm">{L.footer.consult}</a>
-            <a href={CATALOG_URL} download className="px-4 py-2 rounded-xl border text-sm" target="_blank" rel="noopener noreferrer">{L.hero.ctas.catalog}</a>
+            <a href={"catalog/TransVille_LData_ver2.pdf"} download className="px-4 py-2 rounded-xl border text-sm" target="_blank" rel="noopener noreferrer">{L.hero.ctas.catalog}</a>
             <a href={buildMailto('sample', L, { category: data.title })} className="px-4 py-2 rounded-xl border text-sm">{L.footer.sample}</a>
           </div>
         </div>
@@ -320,7 +363,7 @@
           <div className="md:text-right text-base font-medium">
             <a href={buildMailto('consult', locale)} className="hover:text-sky-700">{locale.footer.consult}</a>
             <span className="mx-2">·</span>
-            <a href={CATALOG_URL} download className="hover:text-sky-700" target="_blank" rel="noopener noreferrer">{L.hero.ctas.catalog}</a>
+            <a href={"catalog/TransVille_LData_ver2.pdf"} download className="hover:text-sky-700" target="_blank" rel="noopener noreferrer">{LOCALES[ 'ko' ].hero.ctas.catalog}</a>
             <span className="mx-2">·</span>
             <a href={buildMailto('sample', locale)} className="hover:text-sky-700">{locale.footer.sample}</a>
           </div>
