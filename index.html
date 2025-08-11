@@ -18,35 +18,67 @@
     const { useState } = React;
 
     const LOCALES = {
-      ko: { code:"ko", brand:"TransVille", nav:{ product:"Product", about:"About", contact:"연락처" },
-        hero:{ title1:"AI 혁신의 시작, ", title2:"TransVille 데이터", subtitle:"국내 AI 연구·개발 대기업과 정부기관을 위한 상업용 학습 데이터",
-               promo:"AI 학습 품질을 높이는 검증된 대규모 데이터로 귀사의 경쟁력을 강화하세요.", ctas:{ consult:"상담/샘플 요청", catalog:"카탈로그 다운로드" } },
+      ko: {
+        code:"ko", brand:"TransVille",
+        nav:{ product:"Product", about:"About", contact:"연락처" },
+        hero:{ title1:"AI 혁신의 시작, ", title2:"TransVille 데이터",
+               subtitle:"국내 AI 연구·개발 대기업과 정부기관을 위한 상업용 학습 데이터",
+               promo:"AI 학습 품질을 높이는 검증된 대규모 데이터로 귀사의 경쟁력을 강화하세요.",
+               ctas:{ consult:"상담/샘플 요청", catalog:"카탈로그 다운로드" } },
         stats:{ domain:"도메인", pairs:"언어쌍", total:"총 문장" },
         categoriesTitle:"제품 카테고리",
         categoriesSubtitle:"전문용어 · 도메인 특화 모노코퍼스 · 도메인 특화 병렬코퍼스 · 구어체 병렬코퍼스 · 멀티턴 대화셋 · 멀티턴 QA셋 · 멀티모달",
         modal:{ category:"Category", close:"닫기" },
-        about:{ title:"회사 소개",
-                p1:"트랜스빌은 2015년 설립 이후, 다양한 산업 분야의 AI 학습용 데이터를 전문적으로 구축하고 제공해 온 선도 기업입니다. 우리는 방대한 규모의 고품질 언어 데이터셋을 수집·정제하여 AI 연구·개발 기업, 정부기관, 글로벌 파트너에게 안정적으로 공급하고 있습니다. 데이터의 품질과 일관성을 최우선 가치로 삼아, 도메인별 특성을 반영한 맞춤형 데이터 구축부터 대규모 전송 및 납품까지 전 과정을 체계적으로 관리합니다.",
-                p2:"또한, 빠르게 변화하는 AI 산업 환경에 발맞추어 멀티턴 대화셋, 멀티모달 데이터, 특화 병렬·모노코퍼스 등 다양한 데이터 포맷과 언어쌍을 지원하며, 고객의 연구 목적과 비즈니스 요구에 최적화된 솔루션을 제공합니다. 트랜스빌은 데이터 그 이상의 가치를 전달하는 것을 목표로 합니다.",
-                strengthsTitle:"핵심 역량",
-                strengths:["다양한 AI 학습용 데이터 구축 (전문용어, 병렬코퍼스, 모노코퍼스, 멀티턴 대화셋, 멀티모달)","도메인별 특화 데이터 수집·정제 및 맞춤형 제공","대규모 데이터 처리·전송 인프라 보유","다양한 포맷 지원 (JSONL, Parquet, Arrow, CSV, XLSX, TEXT 등)","언어쌍·도메인별 품질 검증 및 일관성 보장","고객 맞춤형 데이터 갱신 및 확장 서비스"] },
-        footer:{ consult:"상담 요청", catalog:"카탈로그 받기", sample:"샘플 요청" } },
-      en: { code:"en", brand:"TransVille", nav:{ product:"Product", about:"About", contact:"Contact" },
-        hero:{ title1:"Kickstart AI innovation with ", title2:"TransVille Data", subtitle:"Commercial training datasets for enterprise AI R&D and government projects",
-               promo:"Boost your AI with proven large-scale datasets engineered for production.", ctas:{ consult:"Contact / Sample Request", catalog:"Download Catalog" } },
+        about:{
+          title:"회사 소개",
+          p1:"트랜스빌은 2015년 설립 이후, 다양한 산업 분야의 AI 학습용 데이터를 전문적으로 구축하고 제공해 온 선도 기업입니다. 지난 수년간 우리는 방대한 규모의 고품질 언어 데이터셋을 축적해 왔으며, 이를 자체 구축을 포함한 수집, 정제, 그리고 해외 협력사를 통한 데이터 아웃소싱 등 다양한 방식으로 확보하여, AI 연구·개발 기업, 정부기관, 글로벌 파트너에게 안정적이고 지속적으로 공급하고 있습니다.",
+          p2:"우리는 데이터의 품질과 일관성을 최우선 가치로 삼습니다. 도메인별 특성을 반영한 맞춤형 데이터 구축, 세밀한 품질 검수, 최신 보안 기준에 부합하는 안전한 데이터 관리, 그리고 대규모 전송·납품까지 전 과정을 체계적으로 관리하여 고객이 안심하고 사용할 수 있는 데이터를 제공합니다. 이러한 과정을 통해 구축된 데이터는 자연어 처리(NLP), 음성 인식, 기계 번역, 질의응답 시스템, 챗봇, 추천 알고리즘 등 다양한 AI 기술의 핵심 기반이 되고 있습니다.",
+          p3:"또한, 빠르게 변화하는 AI 산업 환경에 발맞추어 멀티턴 대화셋, 멀티모달 데이터, 도메인 특화 병렬·모노코퍼스 등 폭넓은 데이터 포맷과 언어쌍을 지원합니다. 특히 기술·의학·법률·금융·제조 등 고난도 전문 분야에서도 높은 정확도와 완성도를 자랑하며, 고객의 연구 목적과 비즈니스 요구를 정확히 반영한 맞춤형 솔루션을 제공합니다.",
+          p4:"트랜스빌은 단순한 데이터 제공을 넘어, 데이터가 가진 가능성과 가치를 극대화하여 고객의 성공에 기여하는 것을 목표로 합니다. 우리는 앞으로도 세계 각국의 파트너와 협력하여, AI의 미래를 함께 만들어 나가겠습니다.",
+          strengthsTitle:"핵심 역량",
+          strengths:[
+            "다양한 AI 학습용 데이터 구축 (전문용어, 병렬코퍼스, 모노코퍼스, 멀티턴 대화셋, 멀티모달)",
+            "도메인별 특화 데이터 수집·정제 및 맞춤형 제공",
+            "대규모 데이터 처리·전송 인프라 보유",
+            "다양한 포맷 지원 (JSONL, Parquet, Arrow, CSV, XLSX, TEXT 등)",
+            "언어쌍·도메인별 품질 검증 및 일관성 보장",
+            "고객 맞춤형 데이터 갱신 및 확장 서비스"
+          ]
+        },
+        footer:{ consult:"상담 요청", catalog:"카탈로그 받기", sample:"샘플 요청" }
+      },
+      en: {
+        code:"en", brand:"TransVille",
+        nav:{ product:"Product", about:"About", contact:"Contact" },
+        hero:{ title1:"Kickstart AI innovation with ", title2:"TransVille Data",
+               subtitle:"Commercial training datasets for enterprise AI R&D and government projects",
+               promo:"Boost your AI with proven large-scale datasets engineered for production.",
+               ctas:{ consult:"Contact / Sample Request", catalog:"Download Catalog" } },
         stats:{ domain:"Domains", pairs:"Language Pairs", total:"Total Sentences" },
         categoriesTitle:"Product Categories",
         categoriesSubtitle:"Terminology · Domain Mono-corpus · Domain Parallel Corpus · Colloquial Parallel · Multi-turn Dialogues · Multi-turn QA · Multimodal",
         modal:{ category:"Category", close:"Close" },
-        about:{ title:"About Us",
-                p1:"Founded in 2015, TransVille builds and supplies high-quality AI training datasets across industries. We source and refine large-scale language data and deliver reliably to enterprise AI teams, government agencies, and global partners. From domain-aware curation to high-volume delivery, we operate an end-to-end pipeline with quality and consistency as our top priorities.",
-                p2:"We support diverse formats and language pairs—from multi-turn dialogues and multimodal datasets to domain-specific parallel and mono-corpora—tailored to your research goals and production needs. Our mission is to deliver value beyond data.",
-                strengthsTitle:"Core Capabilities",
-                strengths:["Wide range of AI training data (terminology, parallel/mono corpora, multi-turn dialogues, multimodal)","Domain-specialized collection, cleaning, and tailored delivery","Large-scale processing and transfer infrastructure","Rich format support (JSONL, Parquet, Arrow, CSV, XLSX, TEXT)","Quality assurance across language pairs and domains","On-demand updates and scalable extensions"] },
-        footer:{ consult:"Request Consultation", catalog:"Get Catalog", sample:"Request Sample" } }
+        about:{
+          title:"About Us",
+          p1:"Founded in 2015, TransVille is a leading provider specializing in building and delivering AI training data across diverse industries. Over the years, we have accumulated vast, high-quality language datasets through in‑house creation, collection and refinement, and outsourcing via overseas partners—supplying enterprise AI teams, government agencies, and global partners consistently and reliably.",
+          p2:"We put data quality and consistency first. From domain‑aware custom dataset construction, meticulous QA, and secure data management that meets the latest security standards to high‑volume transfer and delivery, we manage every step systematically so clients can rely on the data they use. Our datasets power core AI technologies including Natural Language Processing (NLP), speech recognition, machine translation, question‑answering systems, chatbots, and recommendation algorithms.",
+          p3:"Keeping pace with the fast‑evolving AI landscape, we support a wide range of formats and language pairs—multi‑turn dialogue datasets, multimodal data, and domain‑specialized parallel and mono corpora. We are recognized for high accuracy and completeness in advanced domains such as technology, medicine, law, finance, and manufacturing, delivering tailored solutions aligned with research goals and business needs.",
+          p4:"Beyond supplying data, TransVille aims to maximize the value and potential of data to drive customer success. We will continue working with partners around the world to shape the future of AI together.",
+          strengthsTitle:"Core Capabilities",
+          strengths:[
+            "Wide range of AI training data (terminology, parallel/mono corpora, multi‑turn dialogues, multimodal)",
+            "Domain‑specialized collection, cleaning, and tailored delivery",
+            "Large‑scale processing and transfer infrastructure",
+            "Rich format support (JSONL, Parquet, Arrow, CSV, XLSX, TEXT)",
+            "Quality assurance across language pairs and domains",
+            "On‑demand updates and scalable extensions"
+          ]
+        },
+        footer:{ consult:"Request Consultation", catalog:"Get Catalog", sample:"Request Sample" }
+      }
     };
 
-    // ---- Korean categories (FILLED) ----
+    // ---- Categories (KR) ----
     const CATEGORIES_KO = [
       { key:"term", title:"전문용어", desc:"산업별 용어·약어·표준 표현 정리, 번역 일관성에 최적화",
         specs:[
@@ -120,10 +152,13 @@
         ]}
     ];
 
-    // ---- English categories (kept in English) ----
+    // ---- Categories (EN) ----
     const CATEGORIES_EN = [
-      { key:"term", title:"Terminology", desc:"Standardized terminology and abbreviations by industry; optimized for translation consistency",
-        specs:[
+      {
+        key: "term",
+        title: "Terminology",
+        desc: "Standardized terminology and abbreviations by industry; optimized for translation consistency",
+        specs: [
           "Language Pairs: EN↔KO, EN↔ZH, EN↔JA, EN↔TW",
           "Scale: EN–KO: 3M pairs (60+ fields), EN–ZH: 3.5M pairs (70+ fields), EN–JA: 2.7M pairs (50+ fields), EN–TW: 3.5M pairs (50+ fields)",
           "Format: CSV, XLSX, TEXT",
@@ -131,9 +166,13 @@
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email",
           "Main Domains: Electronics, Electrical, Aerospace, Physics, Chemistry, Shipbuilding, Architecture, Law, Finance, etc."
-        ]},
-      { key:"mono", title:"Domain Mono‑corpus", desc:"Large-scale single-language domain text (style/quality filtered)",
-        specs:[
+        ]
+      },
+      {
+        key: "mono",
+        title: "Domain Mono‑corpus",
+        desc: "Large-scale single-language domain text (style/quality filtered)",
+        specs: [
           "Language: Korean, English, Japanese, etc.",
           "Scale: Min. 10M – Max. 100M sentences per domain (inquire per domain)",
           "Format: TXT, JSONL",
@@ -141,9 +180,13 @@
           "Sample: Small sample via email",
           "Domains: Economics (Finance, Real Estate & Construction), Science (Mining, Transportation, Agriculture, Life Sciences, Petrochemicals, Software, Water & Marine, Mathematics, Safety, Medicine, AI, Research & General, Automotive, Power & Energy, Information & Security, Manufacturing, Computing, Telecommunications, Aerospace), Society (News & Media, Law, Current Affairs & Administration, Politics), Entertainment (Games, Tourism, Sports, Film & Entertainment)",
           "Usage: Language model pretraining, domain adaptation"
-        ]},
-      { key:"para-domain", title:"Domain Parallel Corpus", desc:"Industry-specific parallel sentence pairs for MT tuning and QE",
-        specs:[
+        ]
+      },
+      {
+        key: "para-domain",
+        title: "Domain Parallel Corpus",
+        desc: "Industry-specific parallel sentence pairs for MT tuning and QE",
+        specs: [
           "Language Pairs: Source: English, Korean; Target: Chinese, Japanese, Russian, German, French, Spanish, Italian, Vietnamese, Indonesian, Thai",
           "Scale: 5M–10M pairs per language pair and domain",
           "Format: CSV, XLSX, TEXT",
@@ -151,18 +194,26 @@
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email",
           "Main Domains: Electronics, Electrical, Aerospace, Physics, Chemistry, Shipbuilding, Architecture, Law, Finance, etc."
-        ]},
-      { key:"para-colloquial", title:"Colloquial Parallel Corpus", desc:"Natural conversational parallel data",
-        specs:[
+        ]
+      },
+      {
+        key: "para-colloquial",
+        title: "Colloquial Parallel Corpus",
+        desc: "Natural conversational parallel data",
+        specs: [
           "Domain: Colloquial",
           "Scale: 5M–10M pairs",
           "Format: CSV, XLSX, TEXT",
           "Update Cycle: On demand",
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email"
-        ]},
-      { key:"multi-dialogue", title:"Multi‑turn Dialogues", desc:"Consecutive dialogues involving multiple speakers",
-        specs:[
+        ]
+      },
+      {
+        key: "multi-dialogue",
+        title: "Multi‑turn Dialogues",
+        desc: "Consecutive dialogues involving multiple speakers",
+        specs: [
           "Language: Korean, Chinese",
           "Scale: 20M sentences each (about 2M dialogue sets)",
           "Format: CSV, XLSX, TEXT",
@@ -170,9 +221,13 @@
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email",
           "Usage: Conversational LLM training"
-        ]},
-      { key:"multi-qa", title:"Multi‑turn QA", desc:"Deep domain‑specific question–answer sets",
-        specs:[
+        ]
+      },
+      {
+        key: "multi-qa",
+        title: "Multi‑turn QA",
+        desc: "Deep domain‑specific question–answer sets",
+        specs: [
           "Language: Korean, Chinese",
           "Fields: Medicine, Science & Technology",
           "Scale: Medicine ~30M sentences, Sci/Tech ~100M sentences (about 8M QA turns)",
@@ -181,9 +236,13 @@
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email",
           "Usage: QA model training and evaluation"
-        ]},
-      { key:"multimodal", title:"Multimodal (Image·Text)", desc:"Image–text paired datasets",
-        specs:[
+        ]
+      },
+      {
+        key: "multimodal",
+        title: "Multimodal (Image·Text)",
+        desc: "Image–text paired datasets",
+        specs: [
           "Language: Korean, Chinese",
           "Scale: ~10M pairs (image & text, text ≥200 characters)",
           "Format: JSON, Parquet",
@@ -191,7 +250,8 @@
           "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
           "Sample: Small sample via email",
           "Usage: Image captioning, multimodal LLM training"
-        ]}
+        ]
+      }
     ];
 
     const EMAIL = "dugi6508@daum.net";
@@ -252,7 +312,7 @@
     }
 
     function Hero({ L }) {
-      return (<section id="home" className="bg-gradient-to-b from-white to-slate-100">
+      return (<section id="home" className="bg-gradient-to-b from-white to	slate-100">
         <div className="mx-auto max-w-7xl px-4 py-14 grid lg:grid-cols-2 gap-8 items-center">
           <div>
             <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight">{L.hero.title1}<span className="text-sky-600">{L.hero.title2}</span></h1>
@@ -333,8 +393,19 @@
     function About({ L }) {
       return (<section id="about" className="bg-white border-y border-slate-200">
         <div className="mx-auto max-w-7xl px-4 py-14 grid md:grid-cols-2 gap-10">
-          <div><h2 className="text-2xl font-extrabold">{L.about.title}</h2><p className="mt-2 text-slate-700 leading-relaxed">{L.about.p1}</p><p className="mt-4 text-slate-700 leading-relaxed">{L.about.p2}</p></div>
-          <div><h3 className="font-bold">{L.about.strengthsTitle}</h3><ul className="mt-3 space-y-2 text-slate-700 text-sm list-disc ml-5">{L.about.strengths.map((s, i) => (<li key={i}>{s}</li>))}</ul></div>
+          <div>
+            <h2 className="text-2xl font-extrabold">{L.about.title}</h2>
+            <p className="mt-2 text-slate-700 leading-relaxed">{L.about.p1}</p>
+            <p className="mt-4 text-slate-700 leading-relaxed">{L.about.p2}</p>
+            <p className="mt-4 text-slate-700 leading-relaxed">{L.about.p3}</p>
+            <p className="mt-4 text-slate-700 leading-relaxed">{L.about.p4}</p>
+          </div>
+          <div>
+            <h3 className="font-bold">{L.about.strengthsTitle}</h3>
+            <ul className="mt-3 space-y-2 text-slate-700 text-sm list-disc ml-5">
+              {L.about.strengths.map((s, i) => (<li key={i}>{s}</li>))}
+            </ul>
+          </div>
         </div>
       </section>);
     }
@@ -363,7 +434,7 @@
           <div className="md:text-right text-base font-medium">
             <a href={buildMailto('consult', locale)} className="hover:text-sky-700">{locale.footer.consult}</a>
             <span className="mx-2">·</span>
-            <a href={"catalog/TransVille_LData_ver2.pdf"} download className="hover:text-sky-700" target="_blank" rel="noopener noreferrer">{LOCALES[ 'ko' ].hero.ctas.catalog}</a>
+            <a href={"catalog/TransVille_LData_ver2.pdf"} download className="hover:text-sky-700" target="_blank" rel="noopener noreferrer">{LOCALES['ko'].hero.ctas.catalog}</a>
             <span className="mx-2">·</span>
             <a href={buildMailto('sample', locale)} className="hover:text-sky-700">{locale.footer.sample}</a>
           </div>
