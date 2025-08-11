@@ -13,166 +13,362 @@
   <style>html { scroll-behavior: smooth; }</style>
 </head>
 <body class="bg-slate-50">
-  <!-- build: transville r7 | 2025-08-11T19:24:07Z -->
   <div id="root"></div>
   <script type="text/babel">
     const { useState } = React;
 
     const LOCALES = {
-      ko: {
-        code:"ko", brand:"TransVille",
-        nav:{ product:"Product", about:"About", contact:"연락처" },
-        hero:{ title1:"AI 혁신의 시작, ", title2:"TransVille 데이터",
-               subtitle:"국내 AI 연구·개발 대기업과 정부기관을 위한 상업용 학습 데이터",
-               promo:"AI 학습 품질을 높이는 검증된 대규모 데이터로 귀사의 경쟁력을 강화하세요.",
-               ctas:{ consult:"상담/샘플 요청", catalog:"카탈로그 다운로드" } },
+      ko: { code:"ko", brand:"TransVille", nav:{ product:"Product", about:"About", contact:"연락처" },
+        hero:{ title1:"AI 혁신의 시작, ", title2:"TransVille 데이터", subtitle:"국내 AI 연구·개발 대기업과 정부기관을 위한 상업용 학습 데이터",
+               promo:"AI 학습 품질을 높이는 검증된 대규모 데이터로 귀사의 경쟁력을 강화하세요.", ctas:{ consult:"상담/샘플 요청", catalog:"카탈로그 다운로드" } },
         stats:{ domain:"도메인", pairs:"언어쌍", total:"총 문장" },
         categoriesTitle:"제품 카테고리",
         categoriesSubtitle:"전문용어 · 도메인 특화 모노코퍼스 · 도메인 특화 병렬코퍼스 · 구어체 병렬코퍼스 · 멀티턴 대화셋 · 멀티턴 QA셋 · 멀티모달",
         modal:{ category:"Category", close:"닫기" },
-        about:{
-          title:"회사 소개",
-          paragraphs: ["트랜스빌은 2015년 설립 이후, 다양한 산업 분야의 AI 학습용 데이터를 전문적으로 구축하고 제공해 온 선도 기업입니다. 지난 수년간 우리는 방대한 규모의 고품질 언어 데이터셋을 축적해 왔으며, 이를 자체 구축을 포함한 수집, 정제, 그리고 해외 협력사를 통한 데이터 아웃소싱 등 다양한 방식으로 확보하여, AI 연구·개발 기업, 정부기관, 글로벌 파트너에게 안정적이고 지속적으로 공급하고 있습니다.", "우리는 데이터의 품질과 일관성을 최우선 가치로 삼습니다. 도메인별 특성을 반영한 맞춤형 데이터 구축, 세밀한 품질 검수, 최신 보안 기준에 부합하는 안전한 데이터 관리, 그리고 대규모 전송·납품까지 전 과정을 체계적으로 관리하여 고객이 안심하고 사용할 수 있는 데이터를 제공합니다. 이러한 과정을 통해 구축된 데이터는 자연어 처리(NLP), 음성 인식, 기계 번역, 질의응답 시스템, 챗봇, 추천 알고리즘 등 다양한 AI 기술의 핵심 기반이 되고 있습니다.", "또한, 빠르게 변화하는 AI 산업 환경에 발맞추어 멀티턴 대화셋, 멀티모달 데이터, 도메인 특화 병렬·모노코퍼스 등 폭넓은 데이터 포맷과 언어쌍을 지원합니다. 특히 기술·의학·법률·금융·제조 등 고난도 전문 분야에서도 높은 정확도와 완성도를 자랑하며, 고객의 연구 목적과 비즈니스 요구를 정확히 반영한 맞춤형 솔루션을 제공합니다.", "트랜스빌은 단순한 데이터 제공을 넘어, 데이터가 가진 가능성과 가치를 극대화하여 고객의 성공에 기여하는 것을 목표로 합니다. 우리는 앞으로도 세계 각국의 파트너와 협력하여, AI의 미래를 함께 만들어 나가겠습니다."],
-          strengthsTitle:"핵심 역량",
-          strengths:[
-            "다양한 AI 학습용 데이터 구축 (전문용어, 병렬코퍼스, 모노코퍼스, 멀티턴 대화셋, 멀티모달)",
-            "도메인별 특화 데이터 수집·정제 및 맞춤형 제공",
-            "대규모 데이터 처리·전송 인프라 보유",
-            "다양한 포맷 지원 (JSONL, Parquet, Arrow, CSV, XLSX, TEXT 등)",
-            "언어쌍·도메인별 품질 검증 및 일관성 보장",
-            "고객 맞춤형 데이터 갱신 및 확장 서비스"
-          ]
-        },
-        footer:{ consult:"상담 요청", catalog:"카탈로그 받기", sample:"샘플 요청" }
-      },
-      en: {
-        code:"en", brand:"TransVille",
-        nav:{ product:"Product", about:"About", contact:"Contact" },
-        hero:{ title1:"Kickstart AI innovation with ", title2:"TransVille Data",
-               subtitle:"Commercial training datasets for enterprise AI R&D and government projects",
-               promo:"Boost your AI with proven large-scale datasets engineered for production.",
-               ctas:{ consult:"Contact / Sample Request", catalog:"Download Catalog" } },
+        about:{ title:"회사 소개",
+                p1:"트랜스빌은 2015년 설립 이후, 다양한 산업 분야의 AI 학습용 데이터를 전문적으로 구축하고 제공해 온 선도 기업입니다. 우리는 방대한 규모의 고품질 언어 데이터셋을 수집·정제하여 AI 연구·개발 기업, 정부기관, 글로벌 파트너에게 안정적으로 공급하고 있습니다. 데이터의 품질과 일관성을 최우선 가치로 삼아, 도메인별 특성을 반영한 맞춤형 데이터 구축부터 대규모 전송 및 납품까지 전 과정을 체계적으로 관리합니다.",
+                p2:"또한, 빠르게 변화하는 AI 산업 환경에 발맞추어 멀티턴 대화셋, 멀티모달 데이터, 특화 병렬·모노코퍼스 등 다양한 데이터 포맷과 언어쌍을 지원하며, 고객의 연구 목적과 비즈니스 요구에 최적화된 솔루션을 제공합니다. 트랜스빌은 데이터 그 이상의 가치를 전달하는 것을 목표로 합니다.",
+                strengthsTitle:"핵심 역량",
+                strengths:["다양한 AI 학습용 데이터 구축 (전문용어, 병렬코퍼스, 모노코퍼스, 멀티턴 대화셋, 멀티모달)","도메인별 특화 데이터 수집·정제 및 맞춤형 제공","대규모 데이터 처리·전송 인프라 보유","다양한 포맷 지원 (JSONL, Parquet, Arrow, CSV, XLSX, TEXT 등)","언어쌍·도메인별 품질 검증 및 일관성 보장","고객 맞춤형 데이터 갱신 및 확장 서비스"] },
+        footer:{ consult:"상담 요청", catalog:"카탈로그 받기", sample:"샘플 요청" } },
+      en: { code:"en", brand:"TransVille", nav:{ product:"Product", about:"About", contact:"Contact" },
+        hero:{ title1:"Kickstart AI innovation with ", title2:"TransVille Data", subtitle:"Commercial training datasets for enterprise AI R&D and government projects",
+               promo:"Boost your AI with proven large-scale datasets engineered for production.", ctas:{ consult:"Contact / Sample Request", catalog:"Download Catalog" } },
         stats:{ domain:"Domains", pairs:"Language Pairs", total:"Total Sentences" },
         categoriesTitle:"Product Categories",
         categoriesSubtitle:"Terminology · Domain Mono-corpus · Domain Parallel Corpus · Colloquial Parallel · Multi-turn Dialogues · Multi-turn QA · Multimodal",
         modal:{ category:"Category", close:"Close" },
-        about:{
-          title:"About Us",
-          paragraphs: ["Founded in 2015, TransVille is a leading provider specializing in building and delivering AI training data across diverse industries. Over the years, we have accumulated vast, high‑quality language datasets through in‑house creation, collection and refinement, and collaboration with overseas partners—supplying enterprise AI teams, government agencies, and global partners consistently and reliably.", "We put data quality and consistency first. From domain‑aware custom dataset construction, meticulous QA, and secure data management that meets the latest security standards to high‑volume transfer and delivery, we manage every step systematically so clients can rely on the data they use. Our datasets power core AI technologies including Natural Language Processing (NLP), speech recognition, machine translation, question‑answering systems, chatbots, and recommendation algorithms.", "Keeping pace with the fast‑evolving AI landscape, we support a wide range of formats and language pairs—multi‑turn dialogue datasets, multimodal data, and domain‑specialized parallel and monolingual corpora. We are recognized for high accuracy and completeness in advanced domains such as technology, medicine, law, finance, and manufacturing, delivering tailored solutions aligned with research goals and business needs.", "Beyond supplying data, TransVille aims to maximize the value and potential of data to drive customer success. We will continue working with partners around the world to shape the future of AI together."],
-          strengthsTitle:"Core Capabilities",
-          strengths:[
-            "Wide range of AI training data (terminology, parallel/mono corpora, multi‑turn dialogues, multimodal)",
-            "Domain‑specialized collection, cleaning, and tailored delivery",
-            "Large‑scale processing and transfer infrastructure",
-            "Rich format support (JSONL, Parquet, Arrow, CSV, XLSX, TEXT)",
-            "Quality assurance across language pairs and domains",
-            "On‑demand updates and scalable extensions"
-          ]
-        },
-        footer:{ consult:"Request Consultation", catalog:"Get Catalog", sample:"Request Sample" }
-      }
+        about:{ title:"About Us",
+                p1:"Founded in 2015, TransVille builds and supplies high-quality AI training datasets across industries. We source and refine large-scale language data and deliver reliably to enterprise AI teams, government agencies, and global partners. From domain-aware curation to high-volume delivery, we operate an end-to-end pipeline with quality and consistency as our top priorities.",
+                p2:"We support diverse formats and language pairs—from multi-turn dialogues and multimodal datasets to domain-specific parallel and mono-corpora—tailored to your research goals and production needs. Our mission is to deliver value beyond data.",
+                strengthsTitle:"Core Capabilities",
+                strengths:["Wide range of AI training data (terminology, parallel/mono corpora, multi-turn dialogues, multimodal)","Domain-specialized collection, cleaning, and tailored delivery","Large-scale processing and transfer infrastructure","Rich format support (JSONL, Parquet, Arrow, CSV, XLSX, TEXT)","Quality assurance across language pairs and domains","On-demand updates and scalable extensions"] },
+        footer:{ consult:"Request Consultation", catalog:"Get Catalog", sample:"Request Sample" } }
     };
 
-    // Keep categories short here (focus of this bundle is About replacement)
+    // ---- Korean categories (FILLED) ----
     const CATEGORIES_KO = [
       { key:"term", title:"전문용어", desc:"산업별 용어·약어·표준 표현 정리, 번역 일관성에 최적화",
-        specs:[ "언어쌍: 영↔한, 영↔중, 영↔일, 영↔대만", "포맷: CSV, XLSX, TEXT", "샘플 제공: 소량 이메일 제공" ]},
-      { key:"mono", title:"도메인 특화 모노코퍼스", desc:"한 언어 내 대규모 도메인 텍스트",
-        specs:[ "언어: 한국어, 영어, 일본어 등", "포맷: TXT, JSONL" ]}
+        specs:[
+          "언어쌍: 영↔한, 영↔중, 영↔일, 영↔대만",
+          "규모: 영한 60여개 분야 300만쌍, 영중 70여개 분야 350만쌍, 영일 50여개 분야 270만쌍, 영대만 50여개 분야 350만쌍",
+          "포맷: CSV, XLSX, TEXT",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "대표 도메인: 전자, 전기, 항공우주, 물리, 화학, 조선, 건축, 법률, 금융 등"
+        ]},
+      { key:"mono", title:"도메인 특화 모노코퍼스", desc:"한 언어 내 대규모 도메인 텍스트 (스타일/품질 필터 적용)",
+        specs:[
+          "언어: 한국어, 영어, 일본어 등",
+          "규모: 1도메인당 최소 1천만~최대 1억 문장 (도메인별 문의 요망)",
+          "포맷: TXT, JSONL",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "도메인: 경제(금융, 부동산·건설), 과학(광업, 교통·운송, 농축어업, 생명과학, 석유화학, 소프트웨어, 수자원·해양, 수학, 안전, 의학, 인공지능, 연구·일반, 자동차, 전력·에너지, 정보·보안, 제조, 컴퓨터, 통신, 항공우주), 사회(뉴스·미디어, 법률, 시사·행정, 정치), 엔터(게임, 관광, 스포츠, 영화·엔터)",
+          "용도: 언어 모델 프리트레이닝, 도메인 어댑테이션"
+        ]},
+      { key:"para-domain", title:"도메인 특화 병렬코퍼스", desc:"산업별 평행문장 페어, MT 튜닝·QE 용",
+        specs:[
+          "언어쌍: 출발어 영어·한국어, 타겟어 중국어, 일본어, 러시아어, 독일어, 프랑스어, 스페인어, 이태리어, 베트남어, 인도네시아어, 태국어",
+          "규모: 언어쌍·도메인당 500만~1000만쌍",
+          "포맷: CSV, XLSX, TEXT",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "대표 도메인: 전자, 전기, 항공우주, 물리, 화학, 조선, 건축, 법률, 금융 등"
+        ]},
+      { key:"para-colloquial", title:"구어체 병렬코퍼스", desc:"일상 대화·자연스러운 구어체 병렬 데이터",
+        specs:[
+          "도메인: 구어체",
+          "규모: 500만~1000만쌍",
+          "포맷: CSV, XLSX, TEXT",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공"
+        ]},
+      { key:"multi-dialogue", title:"멀티턴 대화셋", desc:"다수 발화자가 참여하는 연속 대화 데이터",
+        specs:[
+          "언어: 한국어, 중국어",
+          "규모: 각 2000만 문장 (약 200만 대화셋)",
+          "포맷: CSV, XLSX, TEXT",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "용도: 대화형 LLM 학습"
+        ]},
+      { key:"multi-qa", title:"멀티턴 QA셋", desc:"분야별 심층 질의응답 세트",
+        specs:[
+          "언어: 한국어, 중국어",
+          "분야: 의학, 과학기술",
+          "규모: 의학 약 3000만 문장, 과학기술 약 1억 문장 (약 800만 대화셋)",
+          "포맷: CSV, XLSX, TEXT",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "용도: QA 모델 학습, 평가"
+        ]},
+      { key:"multimodal", title:"멀티모달 (이미지·텍스트)", desc:"이미지와 설명 텍스트 페어 데이터",
+        specs:[
+          "언어: 한국어, 중국어",
+          "규모: 약 1000만쌍 (이미지·텍스트는 약 200자 이상)",
+          "포맷: JSON, Parquet",
+          "갱신주기: 필요 시 갱신",
+          "라이선스: 상업적 AI 서비스 개발 학습용, 납품은 계약 후 1개월 이내(조정 가능)",
+          "샘플 제공: 소량 이메일 제공",
+          "용도: 이미지 캡션, 멀티모달 LLM 학습"
+        ]}
     ];
+
+    // ---- English categories (kept in English) ----
     const CATEGORIES_EN = [
-      { key:"term", title:"Terminology", desc:"Standardized terminology and abbreviations by industry",
-        specs:[ "Language Pairs: EN↔KO/ ZH/ JA/ TW", "Format: CSV, XLSX, TEXT", "Sample: via email" ]},
-      { key:"mono", title:"Domain Mono‑corpus", desc:"Large-scale single-language domain text",
-        specs:[ "Language: KO/EN/JA", "Format: TXT, JSONL" ]}
+      { key:"term", title:"Terminology", desc:"Standardized terminology and abbreviations by industry; optimized for translation consistency",
+        specs:[
+          "Language Pairs: EN↔KO, EN↔ZH, EN↔JA, EN↔TW",
+          "Scale: EN–KO: 3M pairs (60+ fields), EN–ZH: 3.5M pairs (70+ fields), EN–JA: 2.7M pairs (50+ fields), EN–TW: 3.5M pairs (50+ fields)",
+          "Format: CSV, XLSX, TEXT",
+          "Update Cycle: On demand",
+          "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
+          "Sample: Small sample via email",
+          "Main Domains: Electronics, Electrical, Aerospace, Physics, Chemistry, Shipbuilding, Architecture, Law, Finance, etc."
+        ]},
+      { key:"mono", title:"Domain Mono‑corpus", desc:"Large-scale single-language domain text (style/quality filtered)",
+        specs:[
+          "Language: Korean, English, Japanese, etc.",
+          "Scale: Min. 10M – Max. 100M sentences per domain (inquire per domain)",
+          "Format: TXT, JSONL",
+          "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
+          "Sample: Small sample via email",
+          "Domains: Economics (Finance, Real Estate & Construction), Science (Mining, Transportation, Agriculture, Life Sciences, Petrochemicals, Software, Water & Marine, Mathematics, Safety, Medicine, AI, Research & General, Automotive, Power & Energy, Information & Security, Manufacturing, Computing, Telecommunications, Aerospace), Society (News & Media, Law, Current Affairs & Administration, Politics), Entertainment (Games, Tourism, Sports, Film & Entertainment)",
+          "Usage: Language model pretraining, domain adaptation"
+        ]},
+      { key:"para-domain", title:"Domain Parallel Corpus", desc:"Industry-specific parallel sentence pairs for MT tuning and QE",
+        specs:[
+          "Language Pairs: Source: English, Korean; Target: Chinese, Japanese, Russian, German, French, Spanish, Italian, Vietnamese, Indonesian, Thai",
+          "Scale: 5M–10M pairs per language pair and domain",
+          "Format: CSV, XLSX, TEXT",
+          "Update Cycle: On demand",
+          "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
+          "Sample: Small sample via email",
+          "Main Domains: Electronics, Electrical, Aerospace, Physics, Chemistry, Shipbuilding, Architecture, Law, Finance, etc."
+        ]},
+      { key:"para-colloquial", title:"Colloquial Parallel Corpus", desc:"Natural conversational parallel data",
+        specs:[
+          "Domain: Colloquial",
+          "Scale: 5M–10M pairs",
+          "Format: CSV, XLSX, TEXT",
+          "Update Cycle: On demand",
+          "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
+          "Sample: Small sample via email"
+        ]},
+      { key:"multi-dialogue", title:"Multi‑turn Dialogues", desc:"Consecutive dialogues involving multiple speakers",
+        specs:[
+          "Language: Korean, Chinese",
+          "Scale: 20M sentences each (about 2M dialogue sets)",
+          "Format: CSV, XLSX, TEXT",
+          "Update Cycle: On demand",
+          "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
+          "Sample: Small sample via email",
+          "Usage: Conversational LLM training"
+        ]},
+      { key:"multi-qa", title:"Multi‑turn QA", desc:"Deep domain‑specific question–answer sets",
+        specs:[
+          "Language: Korean, Chinese",
+          "Fields: Medicine, Science & Technology",
+          "Scale: Medicine ~30M sentences, Sci/Tech ~100M sentences (about 8M QA turns)",
+          "Format: CSV, XLSX, TEXT",
+          "Update Cycle: On demand",
+          "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
+          "Sample: Small sample via email",
+          "Usage: QA model training and evaluation"
+        ]},
+      { key:"multimodal", title:"Multimodal (Image·Text)", desc:"Image–text paired datasets",
+        specs:[
+          "Language: Korean, Chinese",
+          "Scale: ~10M pairs (image & text, text ≥200 characters)",
+          "Format: JSON, Parquet",
+          "Update Cycle: On demand",
+          "License: Training use for commercial AI services; delivery within 1 month after contract (adjustable)",
+          "Sample: Small sample via email",
+          "Usage: Image captioning, multimodal LLM training"
+        ]}
     ];
 
     const EMAIL = "dugi6508@daum.net";
     const CATALOG_URL = "catalog/TransVille_LData_ver2.pdf";
 
+    function buildMailto(type, L, extra = {}) {
+      const isKO = L.code === "ko";
+      const subjectMap = {
+        consult: isKO ? "상담 요청 — TransVille 홈페이지" : "Consultation Request — TransVille Website",
+        catalog: isKO ? "카탈로그 요청 — TransVille" : "Catalog Request — TransVille",
+        sample:  isKO ? "샘플 요청 — TransVille" : "Sample Request — TransVille",
+      };
+      const bodyKO = ["안녕하세요, 트랜스빌 담당자님.", `요청 유형: ${type}`, extra.category ? `관심 제품/카테고리: ${extra.category}` : null, "회사명:", "성함:", "연락처:", "이메일:", "관심 언어쌍/도메인:", "용도:", "희망 납기:", "기타 요청사항:"].filter(Boolean).join("\\n");
+      const bodyEN = ["Hello TransVille team,", `Request Type: ${type}`, extra.category ? `Interested Product/Category: ${extra.category}` : null, "Company:", "Name:", "Phone:", "Email:", "Interested language pairs/domains:", "Intended use:", "Preferred delivery:", "Additional notes:"].filter(Boolean).join("\\n");
+      const subject = subjectMap[type] || (isKO ? "문의 — TransVille" : "Inquiry — TransVille");
+      const body = isKO ? bodyKO : bodyEN;
+      return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
     function App() {
       const [lang, setLang] = useState("ko");
       const L = LOCALES[lang];
-      return (
-        <div className="min-h-screen bg-slate-50 text-slate-900">
-          <Header lang={lang} setLang={setLang} L={L} />
-          <Hero L={L} />
-          <About L={L} />
-          <Footer L={L} />
-        </div>
-      );
+      const CATS = lang === "ko" ? CATEGORIES_KO : CATEGORIES_EN;
+      return (<div className="min-h-screen bg-slate-50 text-slate-900">
+        <Header lang={lang} setLang={setLang} L={L} />
+        <Hero L={L} />
+        <Categories L={L} categories={CATS} lang={lang} />
+        <About L={L} />
+        <Contact L={L} />
+        <Footer L={L} />
+      </div>);
     }
 
     function Header({ lang, setLang, L }) {
-      return (
-        <header className="sticky top-0 z-30 bg-white/80 backdrop-blur border-b border-slate-200">
-          <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="text-xl font-extrabold tracking-tight">{L.brand}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <button aria-label="Korean" onClick={() => setLang("ko")} className={`flex items-center gap-1 px-2 py-1 rounded-xl border text-sm ${lang === "ko" ? "bg-slate-900 text-white" : "bg-white"}`}><span>🇰🇷</span><span>KR</span></button>
-              <button aria-label="English" onClick={() => setLang("en")} className={`flex items-center gap-1 px-2 py-1 rounded-xl border text-sm ${lang === "en" ? "bg-slate-900 text-white" : "bg-white"}`}><span>🇺🇸</span><span>EN</span></button>
-            </div>
+      const [open, setOpen] = useState(false);
+      return (<header className="sticky top-0 z-30 bg-white/80 backdrop-blur border-b border-slate-200">
+        <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="text-xl font-extrabold tracking-tight">{L.brand}</span>
           </div>
-        </header>
-      );
+          <nav className="hidden md:flex gap-6 text-lg font-semibold text-slate-700">
+            <a href="#product" className="hover:text-sky-600">{L.nav.product}</a>
+            <a href="#about" className="hover:text-sky-600">{L.nav.about}</a>
+            <a href="#contact" className="hover:text-sky-600">{L.nav.contact}</a>
+          </nav>
+          <div className="flex items-center gap-2">
+            <button aria-label="Korean" onClick={() => setLang("ko")} className={`flex items-center gap-1 px-2 py-1 rounded-xl border text-sm ${lang === "ko" ? "bg-slate-900 text-white" : "bg-white"}`}><span>🇰🇷</span><span>KR</span></button>
+            <button aria-label="English" onClick={() => setLang("en")} className={`flex items-center gap-1 px-2 py-1 rounded-xl border text-sm ${lang === "en" ? "bg-slate-900 text-white" : "bg-white"}`}><span>🇺🇸</span><span>EN</span></button>
+            <button className="md:hidden px-3 py-2 rounded-xl border text-sm" aria-label="Menu" onClick={() => setOpen(!open)}>☰</button>
+          </div>
+        </div>
+        {open && (<div className="md:hidden border-t border-slate-200 bg-white">
+          <a href="#product" className="block px-4 py-3 hover:bg-slate-50" onClick={() => setOpen(false)}>{L.nav.product}</a>
+          <a href="#about" className="block px-4 py-3 hover:bg-slate-50" onClick={() => setOpen(false)}>{L.nav.about}</a>
+          <a href="#contact" className="block px-4 py-3 hover:bg-slate-50" onClick={() => setOpen(false)}>{L.nav.contact}</a>
+        </div>)}
+      </header>);
     }
 
     function Hero({ L }) {
-      return (
-        <section id="home" className="bg-gradient-to-b from-white to-slate-100">
-          <div className="mx-auto max-w-7xl px-4 py-12 grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight">{L.hero.title1}<span className="text-sky-600">{L.hero.title2}</span></h1>
-              <p className="mt-4 text-slate-600 text-lg">{L.hero.subtitle}</p>
-              <p className="mt-2 text-sky-700 text-base font-medium">{L.hero.promo}</p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a href="#about" className="w-full sm:w-auto text-center px-4 py-2 rounded-xl bg-sky-600 text-white font-medium">{L.hero.ctas.consult}</a>
-                <a href={CATALOG_URL} download className="w-full sm:w-auto text-center px-4 py-2 rounded-xl border font-medium" target="_blank" rel="noopener noreferrer">{L.hero.ctas.catalog}</a>
-              </div>
-            </div>
-            <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200 origin-center mx-auto">
-              <div className="h-48 rounded-xl bg-gradient-to-r from-sky-100 to-indigo-100 flex items-center justify-center">
-                <img src="logo.png" alt="TransVille" className="h-14 md:h-16 w-auto object-contain" />
-              </div>
-              <div className="mt-4 text-xs text-slate-500 text-center">build tag: r7 2025-08-11T19:24:07Z</div>
+      return (<section id="home" className="bg-gradient-to-b from-white to-slate-100">
+        <div className="mx-auto max-w-7xl px-4 py-14 grid lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight">{L.hero.title1}<span className="text-sky-600">{L.hero.title2}</span></h1>
+            <p className="mt-4 text-slate-600 text-lg">{L.hero.subtitle}</p>
+            <p className="mt-2 text-sky-700 text-base font-medium">{L.hero.promo}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="#contact" className="w-full sm:w-auto text-center px-4 py-2 rounded-xl bg-sky-600 text-white font-medium">{L.hero.ctas.consult}</a>
+              <a href={"catalog/TransVille_LData_ver2.pdf"} download className="w-full sm:w-auto text-center px-4 py-2 rounded-xl border font-medium" target="_blank" rel="noopener noreferrer">{L.hero.ctas.catalog}</a>
             </div>
           </div>
-        </section>
-      );
+          <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200 origin-center mx-auto">
+            <div className="h-56 rounded-xl bg-gradient-to-r from-sky-100 to-indigo-100 flex items-center justify-center">
+              <img src="logo.png" alt="TransVille" className="h-16 md:h-20 w-auto object-contain" />
+            </div>
+            <div className="mt-4 grid grid-cols-3 gap-3 text-center">
+              <Stat label={L.stats.domain} value="30+" />
+              <Stat label={L.stats.pairs} value="12+" />
+              <Stat label={L.stats.total} value={L.code === 'ko' ? "1.2억+" : "120M+"} />
+            </div>
+          </div>
+        </div>
+      </section>);
+    }
+
+    function Stat({ label, value }) { return (<div className="rounded-xl bg-slate-50 border border-slate-200 p-3"><div className="text-xl font-bold">{value}</div><div className="text-xs text-slate-500">{label}</div></div>); }
+
+    function Categories({ L, categories, lang }) {
+      const [active, setActive] = useState(null);
+      return (<section id="product" className="mx-auto max-w-7xl px-4 py-14">
+        <h2 className="text-2xl font-extrabold">{L.categoriesTitle}</h2>
+        <p className="text-slate-600 mt-1">{L.categoriesSubtitle}</p>
+        <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {categories.map((c) => (
+            <div key={c.key} className="rounded-2xl bg-white border border-slate-200 p-5 shadow-sm hover:shadow-md transition">
+              <div className="text-xs text-slate-500">{L.modal.category}</div>
+              <h3 className="mt-1 font-bold text-lg leading-snug">{c.title}</h3>
+              <p className="mt-2 text-sm text-slate-600 line-clamp-2">{c.desc}</p>
+              <button onClick={() => setActive(c)} className="inline-block mt-4 text-sm text-sky-700 hover:underline">{lang === "ko" ? "자세히 보기" : "Details"}</button>
+            </div>
+          ))}
+        </div>
+        {active && (<SpecModal data={active} L={L} onClose={() => setActive(null)} />)}
+      </section>);
+    }
+
+    function SpecModal({ data, L, onClose }) {
+      function toPairs(specs = []) { return specs.map((s) => { const i = s.indexOf(":"); if (i === -1) return { label: "Info", value: s }; return { label: s.slice(0, i).trim(), value: s.slice(i + 1).trim() }; }); }
+      const pairs = toPairs(data.specs);
+      return (<div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+        <div className="relative w-full max-w-2xl m-4 rounded-2xl bg-white border border-slate-200 shadow-xl">
+          <div className="flex items-center justify-between px-6 py-4 border-b">
+            <div><div className="text-xs text-slate-500">{L.modal.category}</div><div className="font-bold text-lg">{data.title}</div></div>
+            <button onClick={onClose} className="p-2 rounded hover:bg-slate-100">{L.modal.close}</button>
+          </div>
+          <div className="px-6 py-5">
+            <p className="text-slate-700 text-sm leading-relaxed">{data.desc}</p>
+            <div className="mt-5 rounded-xl border border-slate-200 overflow-hidden">
+              <div className="divide-y divide-slate-200">
+                {pairs.map((row, i) => (
+                  <div key={i} className="sm:grid grid-cols-12">
+                    <div className="col-span-4 sm:col-span-3 bg-slate-50 px-4 py-3 text-xs font-semibold text-slate-600 uppercase tracking-wide">{row.label}</div>
+                    <div className="col-span-8 sm:col-span-9 px-4 py-3 text-sm text-slate-800">{row.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="px-6 pb-6 flex items-center gap-2 justify-end border-t">
+            <a href={buildMailto('consult', L, { category: data.title })} className="px-4 py-2 rounded-xl bg-sky-600 text-white text-sm">{L.footer.consult}</a>
+            <a href={"catalog/TransVille_LData_ver2.pdf"} download className="px-4 py-2 rounded-xl border text-sm" target="_blank" rel="noopener noreferrer">{L.hero.ctas.catalog}</a>
+            <a href={buildMailto('sample', L, { category: data.title })} className="px-4 py-2 rounded-xl border text-sm">{L.footer.sample}</a>
+          </div>
+        </div>
+      </div>);
     }
 
     function About({ L }) {
-      return (
-        <section id="about" className="bg-white border-y border-slate-200">
-          <div className="mx-auto max-w-7xl px-4 py-14 grid md:grid-cols-2 gap-10">
-            <div>
-              <h2 className="text-2xl font-extrabold">{L.about.title}</h2>
-              {L.about.paragraphs.map((p, i) => <p key={i} className="mt-4 text-slate-700 leading-relaxed">{p}</p>)}
-            </div>
-            <div>
-              <h3 className="font-bold">{L.about.strengthsTitle}</h3>
-              <ul className="mt-3 space-y-2 text-slate-700 text-sm list-disc ml-5">
-                {L.about.strengths.map((s, i) => (<li key={i}>{s}</li>))}
-              </ul>
-            </div>
-          </div>
-        </section>
-      );
+      return (<section id="about" className="bg-white border-y border-slate-200">
+        <div className="mx-auto max-w-7xl px-4 py-14 grid md:grid-cols-2 gap-10">
+          <div><h2 className="text-2xl font-extrabold">{L.about.title}</h2><p className="mt-2 text-slate-700 leading-relaxed">{L.about.p1}</p><p className="mt-4 text-slate-700 leading-relaxed">{L.about.p2}</p></div>
+          <div><h3 className="font-bold">{L.about.strengthsTitle}</h3><ul className="mt-3 space-y-2 text-slate-700 text-sm list-disc ml-5">{L.about.strengths.map((s, i) => (<li key={i}>{s}</li>))}</ul></div>
+        </div>
+      </section>);
+    }
+
+    function Contact({ L }) {
+      const addr = L.code === 'ko' ? '서울시 노원구 동일로 203가길 29, 420호' : 'Room 420, 29, Dongil-ro 203ga-gil, Nowon-gu, Seoul';
+      const phone = '010-7414-6508'; const email = 'dugi6508@daum.net';
+      const title = L.code === 'ko' ? '연락처' : 'Contact';
+      const callLabel = L.code === 'ko' ? '전화 걸기' : 'Call';
+      const mailLabel = L.code === 'ko' ? '이메일 보내기' : 'Send Email';
+      return (<section id="contact" className="bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-14 grid md:grid-cols-3 gap-6">
+          <div className="md:col-span-3"><h2 className="text-2xl font-extrabold">{title}</h2></div>
+          <div className="rounded-2xl bg-white p-6 border"><div className="text-sm text-slate-500 mb-1">{L.code==='ko'?'주소':'Address'}</div><div className="font-medium">{addr}</div></div>
+          <div className="rounded-2xl bg-white p-6 border"><div className="text-sm text-slate-500 mb-1">{L.code==='ko'?'전화번호':'Phone'}</div><a href={`tel:${phone}`} className="font-medium text-sky-700 hover:underline">{phone}</a><div className="mt-3"><a href={`tel:${phone}`} className="px-3 py-2 rounded-xl border text-sm">{callLabel}</a></div></div>
+          <div className="rounded-2xl bg-white p-6 border"><div className="text-sm text-slate-500 mb-1">Email</div><a href={`mailto:${email}`} className="font-medium text-sky-700 hover:underline">{email}</a><div className="mt-3"><a href={`mailto:${email}`} className="px-3 py-2 rounded-xl border text-sm">{mailLabel}</a></div></div>
+        </div>
+      </section>);
     }
 
     function Footer({ L }) {
-      return (
-        <footer id="footer" className="border-t border-slate-200">
-          <div className="mx-auto max-w-7xl px-4 py-8 text-slate-600 grid md:grid-cols-2 gap-6 items-center">
-            <div><div className="text-lg font-bold">{L.brand}</div><div className="text-base">www.transville.ai.kr</div></div>
-            <div className="md:text-right text-base font-medium">
-              <a href="#" className="hover:text-sky-700">© TransVille</a>
-            </div>
+      const locale = L || { brand: "TransVille", footer: { consult: "상담 요청", catalog: "카탈로그 받기", sample: "샘플 요청" } };
+      return (<footer id="footer" className="border-t border-slate-200">
+        <div className="mx-auto max-w-7xl px-4 py-8 text-slate-600 grid md:grid-cols-2 gap-6 items-center">
+          <div><div className="text-lg font-bold">{locale.brand}</div><div className="text-base">www.transville.ai.kr</div></div>
+          <div className="md:text-right text-base font-medium">
+            <a href={buildMailto('consult', locale)} className="hover:text-sky-700">{locale.footer.consult}</a>
+            <span className="mx-2">·</span>
+            <a href={"catalog/TransVille_LData_ver2.pdf"} download className="hover:text-sky-700" target="_blank" rel="noopener noreferrer">{LOCALES[ 'ko' ].hero.ctas.catalog}</a>
+            <span className="mx-2">·</span>
+            <a href={buildMailto('sample', locale)} className="hover:text-sky-700">{locale.footer.sample}</a>
           </div>
-        </footer>
-      );
+        </div>
+      </footer>);
     }
 
     ReactDOM.createRoot(document.getElementById('root')).render(<App />);
