@@ -293,7 +293,7 @@
           <div className="flex items-center gap-3">
             <span className="text-xl font-extrabold tracking-tight">{L.brand}</span>
           </div>
-          <nav className="hidden md:flex gap-6 text-lg font-semibold text-slate-700">
+          <nav className="hidden md:flex gap-6 text-base font-semibold text-slate-700">
             <a href="#product" className="hover:text-sky-600">{L.nav.product}</a>
             <a href="#about" className="hover:text-sky-600">{L.nav.about}</a>
             <a href="#contact" className="hover:text-sky-600">{L.nav.contact}</a>
@@ -317,15 +317,15 @@
         <div className="mx-auto max-w-7xl px-4 py-14 grid lg:grid-cols-2 gap-8 items-center">
           <div>
             <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight">{L.hero.title1}<span className="text-sky-600">{L.hero.title2}</span></h1>
-            <p className="mt-4 text-slate-600 text-lg">{L.hero.subtitle}</p>
-            <p className="mt-2 text-sky-700 text-base font-medium">{L.hero.promo}</p>
+            <p className="mt-4 text-slate-600 text-base md:text-lg">{L.hero.subtitle}</p>
+            <p className="mt-2 text-sky-700 text-sm md:text-base font-medium">{L.hero.promo}</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="#contact" className="w-full sm:w-auto text-center px-4 py-2 rounded-xl bg-sky-600 text-white font-medium">{L.hero.ctas.consult}</a>
               <a href={"catalog/TransVille_LData_ver2.pdf"} download className="w-full sm:w-auto text-center px-4 py-2 rounded-xl border font-medium" target="_blank" rel="noopener noreferrer">{L.hero.ctas.catalog}</a>
             </div>
           </div>
-          <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200 origin-center mx-auto">
-            <div className="h-56 rounded-xl bg-gradient-to-r from-sky-100 to-indigo-100 flex items-center justify-center">
+          <div className="w-full lg:w-1/2 mx-auto rounded-2xl bg-white p-6 shadow-sm border border-slate-200 origin-center">
+            <div className="h-40 md:h-48 rounded-xl bg-gradient-to-r from-sky-100 to-indigo-100 flex items-center justify-center">
               <img src="logo.png" alt="TransVille" className="w-full h-full object-contain" />
             </div>
             <div className="mt-4 grid grid-cols-3 gap-3 text-center">
@@ -338,7 +338,7 @@
       </section>);
     }
 
-    function Stat({ label, value }) { return (<div className="rounded-xl bg-slate-50 border border-slate-200 p-3"><div className="text-xl font-bold">{value}</div><div className="text-xs text-slate-500">{label}</div></div>); }
+    function Stat({ label, value }) { return (<div className="rounded-xl bg-slate-50 border border-slate-200 p-3"><div className="text-lg font-bold">{value}</div><div className="text-xs text-slate-500">{label}</div></div>); }
 
     function Categories({ L, categories, lang }) {
       const [active, setActive] = useState(null);
@@ -350,7 +350,7 @@
             <div key={c.key} className="rounded-2xl bg-white border border-slate-200 p-5 shadow-sm hover:shadow-md transition">
               <div className="text-xs text-slate-500">{L.modal.category}</div>
               <h3 className="mt-1 font-bold text-lg leading-snug">{c.title}</h3>
-              <p className="mt-2 text-sm text-slate-600 line-clamp-2">{c.desc}</p>
+              <p className="mt-2 text-[13px] text-slate-600 line-clamp-2">{c.desc}</p>
               <button onClick={() => setActive(c)} className="inline-block mt-4 text-sm text-sky-700 hover:underline">{lang === "ko" ? "자세히 보기" : "Details"}</button>
             </div>
           ))}
@@ -396,10 +396,10 @@
         <div className="mx-auto max-w-7xl px-4 py-14 grid md:grid-cols-2 gap-10">
           <div>
             <h2 className="text-2xl font-extrabold">{L.about.title}</h2>
-            <p className="mt-2 text-slate-700 leading-relaxed">{L.about.p1}</p>
-            <p className="mt-4 text-slate-700 leading-relaxed">{L.about.p2}</p>
-            <p className="mt-4 text-slate-700 leading-relaxed">{L.about.p3}</p>
-            <p className="mt-4 text-slate-700 leading-relaxed">{L.about.p4}</p>
+            <p className="mt-2 text-slate-700 leading-relaxed text-[15px]">{L.about.p1}</p>
+            <p className="mt-4 text-slate-700 leading-relaxed text-[15px]">{L.about.p2}</p>
+            <p className="mt-4 text-slate-700 leading-relaxed text-[15px]">{L.about.p3}</p>
+            <p className="mt-4 text-slate-700 leading-relaxed text-[15px]">{L.about.p4}</p>
           </div>
           <div>
             <h3 className="font-bold">{L.about.strengthsTitle}</h3>
